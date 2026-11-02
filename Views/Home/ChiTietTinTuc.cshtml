@@ -1,0 +1,70 @@
+﻿@model QLMYCF_65130390.Models.TIN_TUC
+@{
+    ViewBag.Title = Model.TieuDe;
+}
+
+<div class="news-detail">
+
+    <h2 class="news-title-detail">@Model.TieuDe</h2>
+
+    <p class="news-date-detail">
+        🗓 Đăng ngày: @Model.NgayDang.ToString("dd/MM/yyyy")
+    </p>
+
+    <img src="~/Images/@Model.AnhDaiDien" class="news-detail-img" />
+
+    <div class="news-content">
+        @Html.Raw(Model.NoiDung.Replace("\n", "<br/>"))
+    </div>
+
+    <a href="@Url.Action("Contact","Home")" class="btn-back-news">⬅ Quay lại</a>
+
+</div>
+
+<style>
+    .news-detail {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #e6e0d8;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .news-title-detail {
+        color: #8B5E34;
+        font-weight: 700;
+    }
+
+    .news-date-detail {
+        color: #a1887f;
+        margin-bottom: 15px;
+    }
+
+    .news-detail-img {
+        width: 100%;
+        max-height: 400px;
+        border-radius: 10px;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+    .news-content {
+        font-size: 1.1rem;
+        line-height: 1.7rem;
+        color: #333;
+        margin-bottom: 25px;
+    }
+
+    .btn-back-news {
+        background: #8B5E34;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .btn-back-news:hover {
+            background: #704A29;
+        }
+</style>

@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Admin Panel";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">👑 Admin Panel</h2>
+
+    <div class="alert alert-info">
+        Xin chào: <strong>@Session["TenNguoiDung"]</strong>
+        <br />
+        Quyền: <strong>@Session["Quyen"]</strong>
+    </div>
+
+    <div class="row mt-4">
+
+        @* ===== SẢN PHẨM: ADMIN + QUẢN LÝ + NHÂN VIÊN (NV chỉ xem) ===== *@
+        <div class="col-md-3 mb-3">
+            <a href="@Url.Action("Index", "SAN_PHAM65130390")"
+               class="btn btn-dark w-100 p-3">Quản lý Sản phẩm</a>
+        </div>
+
+        @* ===== KHÁCH HÀNG: CHỈ ADMIN + QUẢN LÝ ===== *@
+        @if (Session["Quyen"]?.ToString() != "Nhân viên")
+        {
+            <div class="col-md-3 mb-3">
+                <a href="@Url.Action("Index", "KHACH_HANG65130390")"
+                   class="btn btn-primary w-100 p-3">Quản lý Khách hàng</a>
+            </div>
+        }
+
+        @* ===== ĐƠN HÀNG: TẤT CẢ ===== *@
+        <div class="col-md-3 mb-3">
+            <a href="@Url.Action("Index", "GIO_HANG65130390")"
+               class="btn btn-success w-100 p-3">Quản lý Đơn hàng</a>
+        </div>
+
+        @* ===== NHÂN VIÊN: CHỈ ADMIN + QUẢN LÝ ===== *@
+        @if (Session["Quyen"]?.ToString() != "Nhân viên")
+        {
+            <div class="col-md-3 mb-3">
+                <a href="@Url.Action("Index", "NHAN_VIEN65130390")"
+                   class="btn btn-warning w-100 p-3">Quản lý Nhân viên</a>
+            </div>
+        }
+
+        @* ===== BANNER: CHỈ ADMIN + QUẢN LÝ ===== *@
+        @if (Session["Quyen"]?.ToString() != "Nhân viên")
+        {
+            <div class="col-md-3 mb-3">
+                <a href="@Url.Action("Index", "QUANG_CAO65130390")"
+                   class="btn btn-secondary w-100 p-3">Quản lý Banner quảng cáo</a>
+            </div>
+        }
+
+        @* ===== TIN TỨC: CHỈ ADMIN + QUẢN LÝ ===== *@
+        @if (Session["Quyen"]?.ToString() != "Nhân viên")
+
+        {
+            <div class="col-md-3 mb-3">
+                <a href="@Url.Action("Index", "TIN_TUC65130390")"
+                   class="btn btn-danger w-100 p-3">Quản lý Tin tức</a>
+            </div>
+        }
+
+    </div>
+</div>

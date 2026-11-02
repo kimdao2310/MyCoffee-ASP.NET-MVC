@@ -1,0 +1,177 @@
+﻿@model IEnumerable<QLMYCF_65130390.Models.SAN_PHAM>
+
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int i = 0;
+}
+
+<h2 class="mb-3">📦 DANH SÁCH SẢN PHẨM</h2>
+
+
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create", "SAN_PHAM65130390", null, new { @class = "btn-add-brown" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>Mã sản phẩm</th>
+        <th>Tên sản phẩm</th>
+        <th>Ảnh sản phẩm</th>
+        <th>Loại sản phẩm</th>
+        <th>Giá bán</th>
+        <th>Mô tả</th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{ i++; }
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSP)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.AnhSanPham))
+                {
+                    <img src="@Url.Content("~/images/" + item.AnhSanPham)" alt="Ảnh SP" style="width:50px; height:50px;" />
+                }
+                else
+                {
+                    <span>Không ảnh</span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LOAI_SAN_PHAM.TenLSP)
+            </td>
+            <td>
+                @String.Format("{0:0,0} đ", item.DonGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTaSP)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.MaSP })" class="btn-action btn-edit" title="Sửa">
+                    <img src="~/Images/edit.jpg" style="width:20px;height:20px;" />
+                </a>
+
+                <a href="@Url.Action("Details", new { id = item.MaSP })" class="btn-action btn-info2" title="Chi tiết">
+                    <img src="~/Images/details.jpg" style="width:20px;height:20px;" />
+                </a>
+
+                <a href="@Url.Action("Delete", new { id = item.MaSP })" class="btn-action btn-delete"
+                   onclick="return confirm('Bạn có chắc muốn xóa?');" title="Xóa">
+                    <img src="~/Images/delete.jpg" style="width:20px;height:20px;" />
+                </a>
+            </td>
+
+        </tr>
+    }
+</table>
+<style>
+    /* Nút thêm mới nâu gradient */
+    .btn-add-brown {
+        background: linear-gradient(135deg, #8B5E34, #A67645);
+        color: white !important;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+        transition: all 0.25s ease;
+        text-decoration: none;
+    }
+
+        .btn-add-brown:hover {
+            background: linear-gradient(135deg, #704A29, #8B5E34);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.35);
+            transform: translateY(-2px);
+        }
+
+        .btn-add-brown:active {
+            transform: scale(0.96);
+            box-shadow: none;
+        }
+
+    /* Bảng sản phẩm */
+    .table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 5px;
+        font-family: Arial, sans-serif;
+    }
+
+        .table th, .table td {
+            text-align: center;
+            padding: 12px 8px;
+            vertical-align: middle;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        /* Header */
+        .table th {
+            background-color: #8B5E34;
+            color: white;
+            font-weight: 600;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        /* Hàng hover */
+        .table tr:hover {
+            background-color: #f5f2ef;
+            transform: translateY(-2px);
+            transition: all 0.2s;
+        }
+
+        /* Ảnh sản phẩm */
+        .table img {
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        /* Chức năng */
+        .table a img {
+            transition: all 0.2s;
+        }
+
+            .table a img:hover {
+                transform: scale(1.2);
+            }
+    /* Nút chức năng dạng icon */
+    .btn-action {
+        padding: 4px 8px;
+        border-radius: 6px;
+        margin-right: 4px;
+        display: inline-block;
+    }
+
+    .btn-edit {
+        background-color: #f0ad4e;
+    }
+
+    .btn-info2 {
+        background-color: #0275d8;
+    }
+
+    .btn-delete {
+        background-color: #d9534f;
+    }
+
+    .btn-action img {
+        transition: 0.2s;
+    }
+
+    .btn-action:hover img {
+        transform: scale(1.25);
+    }
+
+</style>

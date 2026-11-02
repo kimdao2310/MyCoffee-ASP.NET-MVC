@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+    var name = Session["TenNguoiDung"];
+    var role = Session["Quyen"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Panel - @ViewBag.Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: #f4f6f9;
+            font-family: "Segoe UI";
+        }
+
+        /* Sidebar */
+        .admin-sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: #212529;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 70px;
+        }
+
+            .admin-sidebar a {
+                color: #ddd;
+                display: block;
+                padding: 12px 20px;
+                text-decoration: none;
+                font-size: 15px;
+            }
+
+                .admin-sidebar a:hover {
+                    background: #343a40;
+                    color: #fff;
+                }
+
+        /* Header */
+        .admin-header {
+            background: #343a40;
+            color: #fff;
+            height: 70px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            padding: 18px 25px;
+            z-index: 10;
+        }
+
+        .admin-content {
+            margin-left: 260px;
+            padding-top: 90px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .sidebar-title {
+            color: #aaa;
+            margin-left: 20px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="admin-header d-flex justify-content-between align-items-center">
+        <h5 class="text-white m-0">
+            ☕ My Coffee — <span style="font-weight:300;">Admin Panel</span>
+        </h5>
+
+        <div>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-warning me-3">
+                👀 Xem trang web
+            </a>
+
+            @if (name != null)
+            {
+                <span class="me-3">👋 @name (@role)</span>
+                <a href="@Url.Action("Logout", "Auth_65130390")" class="btn btn-sm btn-outline-light">
+                    Đăng xuất
+                </a>
+            }
+        </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="admin-sidebar">
+        <div class="sidebar-title">HỆ THỐNG</div>
+        <a href="@Url.Action("Index","Admin_65130390")"><i class="bi bi-speedometer2"></i> Dashboard</a>
+
+        <div class="sidebar-title">QUẢN LÝ</div>
+        <a href="@Url.Action("Index","SAN_PHAM65130390")">📦 Sản phẩm</a>
+        <a href="@Url.Action("Index","LOAI_SAN_PHAM65130390")">🗂 Loại sản phẩm</a>
+        <a href="@Url.Action("Index","KHACH_HANG65130390")">👥 Khách hàng</a>
+        <a href="@Url.Action("Index","NHAN_VIEN65130390")">👔 Nhân viên</a>
+        <a href="@Url.Action("Index","GIO_HANG65130390")">🧾 Đơn hàng</a>
+        <a href="@Url.Action("Index","QUANG_CAO65130390")">🖼 Quảng cáo</a>
+        <a href="@Url.Action("Index","TIN_TUC65130390")">📰 Tin tức</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="admin-content">
+        @RenderBody()
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

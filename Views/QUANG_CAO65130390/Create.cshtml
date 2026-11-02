@@ -1,0 +1,95 @@
+﻿@model QLMYCF_65130390.Models.QUANG_CAO
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">➕ THÊM QUẢNG CÁO</h3>
+
+<div class="form-box">
+    @using (Html.BeginForm("Create", "QUANG_CAO65130390", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label>Tiêu đề</label>
+        @Html.TextBoxFor(m => m.TieuDe, new { @class = "form-control input-brown" })
+
+        <label>Nội dung</label>
+        @Html.TextAreaFor(m => m.NoiDung, new { @class = "form-control input-brown", rows = 3 })
+
+        <label>Link chuyển hướng</label>
+        @Html.TextBoxFor(m => m.Link, new { @class = "form-control input-brown" })
+
+        <label>Hình ảnh</label>
+        <input type="file" name="HinhAnh" class="form-control input-brown" />
+
+        <label>Ngày bắt đầu</label>
+        @Html.TextBoxFor(m => m.NgayBatDau, new { @class = "form-control input-brown", type = "date" })
+
+        <label>Ngày kết thúc</label>
+        @Html.TextBoxFor(m => m.NgayKetThuc, new { @class = "form-control input-brown", type = "date" })
+
+        <label>Trạng thái</label>
+        @Html.DropDownListFor(m => m.TrangThai,
+            new SelectList(new[] {
+                new { ID = 1, Name = "Đang chạy" },
+                new { ID = 0, Name = "Tắt" }
+            }, "ID", "Name"),
+            new { @class = "form-control input-brown" })
+
+        <button class="btn btn-add mt-3">Thêm mới</button>
+    }
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back">⬅ Quay lại</a>
+<style>
+    .page-title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .form-box {
+        background: white;
+        padding: 25px 35px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        width: 70%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .input-brown {
+        margin-bottom: 12px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+
+    .btn-add {
+        background: #8B5E34;
+        color: white;
+        padding: 10px 22px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+        transition: .25s;
+    }
+
+        .btn-add:hover {
+            background: #704A29;
+            transform: translateY(-2px);
+        }
+
+    .btn-back {
+        background-color: #8B5E34;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: .25s;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+    }
+
+        .btn-back:hover {
+            background: #704A29;
+            transform: translateY(-2px);
+        }
+</style>

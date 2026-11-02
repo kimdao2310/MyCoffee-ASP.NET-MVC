@@ -1,0 +1,89 @@
+﻿@model List<QLMYCF_65130390.Models.CHI_TIET_GH>
+
+@{
+    ViewBag.Title = "Thanh toán";
+}
+
+<h2 class="title">💳 Xác nhận đơn hàng</h2>
+
+<div class="checkout-container">
+
+    <!-- Thông tin khách -->
+    <div class="box">
+        <h3>📌 Thông tin nhận hàng</h3>
+
+        <form method="post" action="@Url.Action("ConfirmCheckout", "CART65130390")">
+            <label>Họ tên</label>
+            <input type="text" name="HoTen" required class="form-control" />
+
+            <label>Số điện thoại</label>
+            <input type="text" name="SDT" required class="form-control" />
+
+            <label>Địa chỉ</label>
+            <textarea name="DiaChi" required class="form-control"></textarea>
+
+            
+
+            <br />
+            <button class="btn btn-success btn-lg w-100">Xác nhận đặt hàng</button>
+        </form>
+    </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="box">
+        <h3>🛒 Sản phẩm</h3>
+
+        <table class="table">
+            <tr>
+                <th>Ảnh</th>
+                <th>Tên</th>
+                <th>SL</th>
+                <th>Giá</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="~/Images/@item.SAN_PHAM.AnhSanPham" width="60" /></td>
+                    <td>@item.SAN_PHAM.TenSP</td>
+                    <td>@item.SoLuong</td>
+                    <td>@String.Format("{0:#,##0}₫", item.DonGia * item.SoLuong)</td>
+                </tr>
+            }
+        </table>
+
+        <h3 class="total">
+            Tổng tiền:
+            <span>@String.Format("{0:#,##0}₫", ViewBag.TongTien)</span>
+        </h3>
+    </div>
+
+</div>
+
+
+<style>
+    .checkout-container {
+        display: flex;
+        gap: 20px;
+    }
+
+    .box {
+        width: 50%;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ddd;
+    }
+
+    .title {
+        color: #8B5E34;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .total {
+        margin-top: 20px;
+        font-size: 22px;
+        color: #c0392b;
+    }
+</style>

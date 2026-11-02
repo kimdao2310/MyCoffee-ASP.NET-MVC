@@ -1,0 +1,213 @@
+﻿@model QLMYCF_65130390.Models.HomeViewModel
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!-- SLIDER BANNER -->
+
+<div id="bannerSlider" class="carousel slide home-banner mb-4" data-bs-ride="carousel" data-bs-interval="3000">
+
+    <div class="carousel-inner">
+        @for (int i = 0; i < Model.Banners.Count; i++)
+        {
+            var qc = Model.Banners[i];
+            <div class="carousel-item @(i == 0 ? "active" : "")">
+                <a href="@qc.Link" target="_blank">
+                    <img src="~/Images/@qc.HinhAnh" class="d-block w-100 banner-img" />
+                </a>
+
+                <div class="carousel-caption d-none d-md-block banner-caption">
+                    <h5>@qc.TieuDe</h5>
+                    <p>@qc.NoiDung</p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- BUTTON NEXT / PREV -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#bannerSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#bannerSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>
+
+
+<!-- SẢN PHẨM MỚI -->
+<h3 class="section-title">✨ Sản phẩm mới nhất</h3>
+
+<div class="row">
+    @foreach (var sp in Model.SanPhamMoi)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card product-card shadow-sm">
+                <img src="~/Images/@sp.AnhSanPham" class="card-img-top product-img" />
+
+                <div class="card-body">
+                    <h5 class="card-title product-name">@sp.TenSP</h5>
+
+                    <p class="price-text">
+                        @string.Format("{0:#,##0}₫", sp.DonGia)
+                    </p>
+
+                    <a href="@Url.Action("ChiTietSanPham", "Home", new { id = sp.MaSP })"
+                       class="btn btn-brown btn-sm">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<!-- TIN TỨC -->
+<h3 class="section-title mt-4">📰 Tin tức mới</h3>
+
+<div class="row">
+    @foreach (var tt in Model.TinTucMoi)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card news-card shadow-sm">
+
+                <img src="~/Images/@tt.AnhDaiDien" class="card-img-top news-img" />
+
+                <div class="card-body">
+                    <h5 class="news-title">@tt.TieuDe</h5>
+
+                    <p class="small text-muted mb-2">
+                        @tt.NgayDang.ToString("dd/MM/yyyy")
+                    </p>
+
+                    <a href="@Url.Action("Contact", "Home", new { id = tt.MaTT })"
+                       class="btn btn-outline-brown btn-sm">Xem thêm</a>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+
+<!-- CSS TRANG HOME -->
+<style>
+    /* Banner */
+    .home-banner {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+
+    .banner-img {
+        height: 350px;
+        object-fit: cover;
+    }
+
+    .banner-caption h5 {
+        background: rgba(0,0,0,0.55);
+        padding: 6px 14px;
+        border-radius: 6px;
+    }
+
+    /* Tiêu đề từng phần */
+    .section-title {
+        color: #8B5E34;
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        border-left: 6px solid #8B5E34;
+        padding-left: 10px;
+    }
+
+    /* Card sản phẩm */
+    .product-card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition: .25s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+    .product-img {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .product-name {
+        font-weight: 600;
+        color: #5A4632;
+    }
+
+    .price-text {
+        color: #c0392b;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .btn-brown {
+        background-color: #8B5E34;
+        border: none;
+        color: white;
+        transition: .25s;
+        border-radius: 6px;
+    }
+
+        .btn-brown:hover {
+            background-color: #704A29;
+            transform: translateY(-2px);
+        }
+
+    /* Tin tức */
+    .news-card {
+        border-radius: 12px;
+        transition: .25s;
+    }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+    .news-img {
+        height: 160px;
+        object-fit: cover;
+    }
+
+    .news-title {
+        font-weight: 600;
+        color: #3E2723;
+        height: 45px;
+        overflow: hidden;
+    }
+
+    .btn-outline-brown {
+        border: 1px solid #8B5E34;
+        color: #8B5E34;
+        border-radius: 6px;
+    }
+
+        .btn-outline-brown:hover {
+            background-color: #8B5E34;
+            color: white;
+        }
+    
+
+    
+    /* Next / Prev button */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(1);
+    }
+
+    .carousel-inner img {
+        height: 60vh; /* 80% chiều cao màn hình */
+        object-fit: cover;
+    }
+    
+</style>

@@ -1,0 +1,204 @@
+﻿@model QLMYCF_65130390.Models.TIN_TUC
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">✏️ SỬA TIN TỨC</h3>
+
+<div class="form-box">
+    @using (Html.BeginForm("Edit", "TIN_TUC65130390", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.MaTT)
+
+        <label>Tiêu đề</label>
+        @Html.TextBoxFor(m => m.TieuDe, new { @class = "form-control input-brown" })
+
+        <label>Nội dung</label>
+        @Html.TextAreaFor(m => m.NoiDung, new { @class = "form-control input-brown", rows = 5 })
+
+        <label>Ảnh hiện tại</label><br />
+        <img src="~/Images/@Model.AnhDaiDien" style="width:200px;height:120px;border-radius:8px;object-fit:cover;margin-bottom:10px;" />
+
+        <label>Đổi ảnh đại diện</label>
+        <input type="file" name="AnhDaiDien" class="form-control input-brown" />
+
+        <label>Trạng thái</label>
+        @Html.DropDownListFor(m => m.TrangThai,
+            new SelectList(new[] {
+                new { ID = 1, Name = "Hiển thị" },
+                new { ID = 0, Name = "Ẩn" }
+            }, "ID", "Name", Model.TrangThai),
+            new { @class = "form-control input-brown" })
+
+        <button class="btn btn-update mt-3">Lưu thay đổi</button>
+    }
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back">⬅ Quay lại</a>
+<style>
+    .page-title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    /* Bảng danh sách tin tức */
+    .table-custom {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 6px;
+        font-family: Arial, sans-serif;
+    }
+
+        .table-custom th {
+            background-color: #8B5E34;
+            color: white;
+            padding: 12px;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .table-custom td {
+            background: #fff;
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .table-custom tr:hover td {
+            background-color: #f5f2ef;
+            transform: translateY(-2px);
+            transition: 0.2s;
+        }
+
+    /* Badge trạng thái */
+    .badge-status {
+        padding: 5px 12px;
+        color: white;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    /* Icon nút chức năng */
+    .icon-btn {
+        width: 22px;
+        height: 22px;
+        transition: 0.25s;
+    }
+
+        .icon-btn:hover {
+            transform: scale(1.25);
+        }
+
+    /* Nút thêm mới */
+    .btn-add-brown {
+        background: linear-gradient(135deg, #8B5E34, #A67645);
+        color: white !important;
+        padding: 8px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+        transition: .25s;
+    }
+
+        .btn-add-brown:hover {
+            background: #704A29;
+            transform: translateY(-2px);
+        }
+
+    /* FORM BOX (Create – Edit) */
+    .form-box {
+        background: white;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 70%;
+    }
+
+    .input-brown {
+        border-radius: 6px;
+        border: 1px solid #8B5E34;
+        padding: 8px;
+        margin-bottom: 12px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #5A4632;
+        margin-top: 10px;
+    }
+
+    /* Button Save – Update */
+    .btn-update, .btn-add {
+        background-color: #8B5E34;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+        transition: .25s;
+    }
+
+        .btn-update:hover, .btn-add:hover {
+            background-color: #704A29;
+            transform: translateY(-2px);
+        }
+
+    /* Chi tiết tin tức */
+    .detail-box {
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 75%;
+    }
+
+    .dl-horizontal dt {
+        font-weight: bold;
+        width: 180px;
+        float: left;
+        clear: left;
+        color: #5A4632;
+        margin-bottom: 12px;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 200px;
+        margin-bottom: 12px;
+    }
+
+    /* Nút quay lại */
+    .btn-back {
+        background-color: #8B5E34;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: .25s;
+    }
+
+        .btn-back:hover {
+            background-color: #704A29;
+            transform: translateY(-2px);
+        }
+
+    /* Nút delete */
+    .btn-delete {
+        background-color: #d9534f;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 600;
+    }
+
+        .btn-delete:hover {
+            background-color: #c9302c;
+            transform: translateY(-2px);
+        }
+</style>

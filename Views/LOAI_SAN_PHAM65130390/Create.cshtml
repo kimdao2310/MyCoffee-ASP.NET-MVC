@@ -1,0 +1,95 @@
+﻿@model QLMYCF_65130390.Models.LOAI_SAN_PHAM
+
+@{
+    ViewBag.Title = "Thêm loại sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title"> THÊM LOẠI SẢN PHẨM</h3>
+
+<div class="form-box">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="mb-3">
+            <label class="form-label">Mã loại sản phẩm</label>
+            @Html.TextBoxFor(m => m.MaLSP, new { @class = "form-control input-brown", placeholder = "Nhập mã loại..." })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tên loại sản phẩm</label>
+            @Html.TextBoxFor(m => m.TenLSP, new { @class = "form-control input-brown", placeholder = "Nhập tên loại..." })
+        </div>
+
+        <button class="btn btn-add">➕ Thêm mới</button>
+    }
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back mt-3">⬅ Quay lại</a>
+
+<style>
+    .page-title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .form-box {
+        background: #ffffff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 450px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #5A4632;
+    }
+
+    .input-brown {
+        border: 1px solid #c7b7a4 !important;
+        background: #faf7f3 !important;
+        border-radius: 8px;
+    }
+
+        .input-brown:focus {
+            border-color: #8B5E34 !important;
+            box-shadow: 0 0 4px rgba(139,94,52,0.4);
+        }
+
+    .btn-add {
+        background: linear-gradient(135deg, #8B5E34, #A67645);
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        color: white;
+        font-weight: 600;
+        transition: .25s ease;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+    }
+
+        .btn-add:hover {
+            background: linear-gradient(135deg, #704A29, #8B5E34);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.35);
+        }
+
+    .btn-back {
+        background-color: gray;
+        color: white !important;
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .25s ease;
+    }
+
+        .btn-back:hover {
+            background-color: #6f6f6f;
+            transform: translateY(-2px);
+        }
+</style>

@@ -1,0 +1,48 @@
+﻿@model QLMYCF_65130390.Models.LOAI_SAN_PHAM
+
+@{
+    ViewBag.Title = "Chi tiết loại sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">📄 CHI TIẾT LOẠI SẢN PHẨM</h3>
+
+<div class="detail-box">
+    <p><strong>Mã loại:</strong> @Model.MaLSP</p>
+    <p><strong>Tên loại:</strong> @Model.TenLSP</p>
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back mt-3">⬅ Quay lại</a>
+
+<style>
+    .page-title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .detail-box {
+        background: #ffffff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 450px;
+        font-size: 1.1rem;
+    }
+
+    .btn-back {
+        background-color: gray;
+        color: white !important;
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .25s ease;
+    }
+
+        .btn-back:hover {
+            background-color: #6f6f6f;
+            transform: translateY(-2px);
+        }
+</style>

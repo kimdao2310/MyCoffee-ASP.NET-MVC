@@ -1,0 +1,91 @@
+﻿@model List<QLMYCF_65130390.Models.TIN_TUC>
+@{
+    ViewBag.Title = "Tin tức";
+}
+
+<h2 class="title mb-4">📰 Tin tức</h2>
+
+<div class="row">
+    @foreach (var t in Model)
+    {
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="news-card">
+
+                <img src="~/Images/@t.AnhDaiDien" class="news-img" />
+
+                <div class="p-3">
+                    <h5 class="news-title">@t.TieuDe</h5>
+
+                    <p class="news-date">
+                        🗓 @t.NgayDang.ToString("dd/MM/yyyy")
+                    </p>
+
+                    <p class="news-desc">
+                        @(t.NoiDung.Length > 110 ? t.NoiDung.Substring(0,110) + "..." : t.NoiDung)
+                    </p>
+
+                    <a href="@Url.Action("ChiTietTinTuc","Home", new { id = t.MaTT })"
+                       class="btn btn-read">Đọc thêm</a>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .title {
+        font-weight: 700;
+        color: #8B5E34;
+    }
+
+    .news-card {
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #e6e0d8;
+        overflow: hidden;
+        transition: .25s;
+    }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+    .news-img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .news-title {
+        color: #8B5E34;
+        font-weight: bold;
+        height: 55px;
+        overflow: hidden;
+    }
+
+    .news-date {
+        color: #a1887f;
+        font-size: 0.9rem;
+    }
+
+    .news-desc {
+        color: #444;
+        height: 60px;
+        overflow: hidden;
+    }
+
+    .btn-read {
+        background: #8B5E34;
+        color: white;
+        padding: 6px 14px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .btn-read:hover {
+            background: #704A29;
+        }
+</style>

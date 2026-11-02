@@ -1,0 +1,128 @@
+﻿@model QLMYCF_65130390.Models.SAN_PHAM
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Sửa sản phẩm";
+}
+
+<h3 class="title-edit">✏️ SỬA SẢN PHẨM</h3>
+
+<div class="edit-container">
+    @using (Html.BeginForm("Edit", "SAN_PHAM65130390", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.MaSP)
+
+        <div class="mb-3">
+            <label class="form-label">Tên sản phẩm</label>
+            @Html.TextBoxFor(m => m.TenSP, new { @class = "form-control input-brown" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mô tả</label>
+            @Html.TextBoxFor(m => m.MoTaSP, new { @class = "form-control input-brown" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Giá</label>
+            @Html.TextBoxFor(m => m.DonGia, new { @class = "form-control input-brown" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Đơn vị tính</label>
+            @Html.TextBoxFor(m => m.DonViTinh, new { @class = "form-control input-brown" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Loại sản phẩm</label>
+            @Html.DropDownList("MaLSP", null, new { @class = "form-control input-brown" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ảnh sản phẩm</label><br />
+
+            @if (Model.AnhSanPham != null)
+            {
+                <img src="~/Images/@Model.AnhSanPham"
+                     class="preview-img" />
+            }
+
+            <input type="file" name="AnhSanPham" class="form-control mt-2" />
+        </div>
+
+        <button class="btn btn-update">💾 Cập nhật</button>
+    }
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back mt-3">⬅ Quay lại</a>
+
+<style>
+    .title-edit {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .edit-container {
+        background: #ffffff;
+        border-left: 6px solid #8B5E34;
+        padding: 25px 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #5A4632;
+    }
+
+    .input-brown {
+        border: 1px solid #c7b7a4 !important;
+        background: #faf7f3 !important;
+        border-radius: 8px;
+    }
+
+        .input-brown:focus {
+            border-color: #8B5E34 !important;
+            box-shadow: 0 0 4px rgba(139,94,52,0.4);
+        }
+
+    .preview-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #cfcfcf;
+        margin-bottom: 10px;
+    }
+
+    .btn-update {
+        background-color: #8B5E34;
+        color: white;
+        padding: 10px 22px;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+        transition: 0.25s ease;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+    }
+
+        .btn-update:hover {
+            background-color: #704A29;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.35);
+        }
+
+    .btn-back {
+        background: #A67C52;
+        color: #fff !important;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .25s ease;
+    }
+
+        .btn-back:hover {
+            background: #8B5E34;
+            transform: translateY(-2px);
+        }
+</style>

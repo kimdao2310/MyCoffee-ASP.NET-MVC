@@ -1,0 +1,173 @@
+﻿@model IEnumerable<QLMYCF_65130390.Models.GIO_HANG>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Đơn hàng";
+    int i = 0;
+}
+
+<h2 class="mb-3">🧾 DANH SÁCH ĐƠN HÀNG</h2>
+
+<table class="table-custom">
+    <tr>
+        <th>STT</th>
+        <th>Mã đơn</th>
+        <th>Khách hàng</th>
+        <th>Ngày đặt</th>
+        <th>Tổng tiền</th>
+        <th>Trạng thái</th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var hd in Model)
+    {
+        string status = "";
+        string color = "";
+
+        switch (hd.TrangThai)
+        {
+            case 0: status = "Chờ duyệt"; color = "#d9534f"; break;
+            case 1: status = "Đã duyệt"; color = "#0275d8"; break;
+            case 2: status = "Đang giao"; color = "#f0ad4e"; break;
+            case 3: status = "Hoàn tất"; color = "#5cb85c"; break;
+        }
+
+        <tr>
+            <td>@(++i)</td>
+            <td>@hd.MaHD</td>
+
+            <!-- ⭐ SỬA LỖI KHÁCH HÀNG BỊ HIỆN TÊN CLASS PROXY -->
+            <td>
+                @(hd.KHACH_HANG != null ? hd.KHACH_HANG.HoTen : "Không có khách hàng")
+            </td>
+
+            <td>@hd.NgayDatHang.ToString("dd/MM/yyyy")</td>
+            <td>@String.Format("{0:0,0} đ", hd.TongTien)</td>
+
+            <td>
+                <span class="badge-status" style="background:@color;">@status</span>
+            </td>
+
+            <td>
+                <!-- DETAILS -->
+                <a href="@Url.Action("Details", new { id = hd.MaHD })" class="btn-action btn-info2">
+                    <img src="~/Images/details.jpg" class="icon-btn" />
+                </a>
+
+                <!-- ACTION STATUS -->
+                @if (hd.TrangThai == 0)
+                {
+                    <a href="@Url.Action("DuyetDon", new { id = hd.MaHD })" class="btn-small btn-blue">Duyệt</a>
+                }
+                else if (hd.TrangThai == 1)
+                {
+                    <a href="@Url.Action("GiaoHang", new { id = hd.MaHD })" class="btn-small btn-yellow">Giao hàng</a>
+                }
+                else if (hd.TrangThai == 2)
+                {
+                    <a href="@Url.Action("HoanTat", new { id = hd.MaHD })" class="btn-small btn-green">Hoàn tất</a>
+                }
+
+                <!-- DELETE -->
+                <a href="@Url.Action("Delete", new { id = hd.MaHD })"
+                   onclick="return confirm('Xóa đơn hàng này?');"
+                   class="btn-action btn-delete">
+                    <img src="~/Images/delete.jpg" class="icon-btn" />
+                </a>
+                
+
+
+            </td>
+
+
+        </tr>
+    }
+</table>
+
+<style>
+    /* ======= TABLE STYLE ======= */
+    .table-custom {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 6px;
+        font-family: Arial, sans-serif;
+    }
+
+        .table-custom th {
+            background-color: #8B5E34;
+            color: white;
+            padding: 12px;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .table-custom td {
+            background: #fff;
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .table-custom tr:hover td {
+            background-color: #f5f2ef;
+            transform: translateY(-2px);
+            transition: 0.2s;
+        }
+
+    /* ======= STATUS BADGE ======= */
+    .badge-status {
+        padding: 5px 12px;
+        color: white;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    /* ======= ICON ======= */
+    .icon-btn {
+        width: 22px;
+        height: 22px;
+        transition: 0.2s;
+    }
+
+        .icon-btn:hover {
+            transform: scale(1.25);
+        }
+
+    .btn-action {
+        margin: 0 3px;
+        display: inline-block;
+    }
+
+    /* ======= SMALL BUTTONS ======= */
+    .btn-small {
+        padding: 4px 8px;
+        color: white !important;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-left: 5px;
+        text-decoration: none;
+        transition: 0.25s;
+    }
+
+    .btn-blue {
+        background: #0275d8;
+    }
+
+    .btn-yellow {
+        background: #f0ad4e;
+    }
+
+    .btn-green {
+        background: #5cb85c;
+    }
+
+    .btn-small:hover {
+        opacity: 0.85;
+        transform: translateY(-2px);
+    }
+    
+
+</style>

@@ -1,0 +1,80 @@
+﻿@model QLMYCF_65130390.Models.QUANG_CAO
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title text-danger">⚠️ XÓA QUẢNG CÁO</h3>
+
+<div class="delete-box">
+
+    <p class="warning-text">
+        Bạn chắc chắn muốn xóa quảng cáo:
+        <strong>@Model.TieuDe</strong>?
+    </p>
+
+    <img src="~/Images/@Model.HinhAnh"
+         style="width:300px;height:160px;border-radius:8px;object-fit:cover;" />
+
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        <button type="submit" class="btn-delete">🗑 Xóa</button>
+        <a href="@Url.Action("Index")" class="btn-back">⬅ Quay lại</a>
+    }
+</div>
+<style>
+    .page-title {
+        color: #c0392b;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .delete-box {
+        background: #fff;
+        padding: 25px;
+        border-left: 6px solid #c0392b;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 65%;
+    }
+
+    .warning-text {
+        background: #ffecec;
+        padding: 12px;
+        border-left: 4px solid #e74c3c;
+        border-radius: 6px;
+        color: #c0392b;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .btn-delete {
+        background: #e74c3c;
+        padding: 10px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        border: none;
+        transition: .25s;
+    }
+
+        .btn-delete:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+    .btn-back {
+        background-color: #8B5E34;
+        padding: 10px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .btn-back:hover {
+            background-color: #704A29;
+            transform: translateY(-2px);
+        }
+</style>

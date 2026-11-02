@@ -1,0 +1,86 @@
+﻿@model QLMYCF_65130390.Models.NHAN_VIEN
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Chi tiết nhân viên";
+}
+
+<h3 class="page-title">👤 CHI TIẾT NHÂN VIÊN</h3>
+
+<div class="detail-box">
+
+    <dl class="dl-horizontal">
+        <dt>Họ tên nhân viên</dt>
+        <dd>@Model.HoTenNV</dd>
+
+        <dt>Email</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>Số điện thoại</dt>
+        <dd>@Model.SoDienThoai</dd>
+
+        <dt>Địa chỉ</dt>
+        <dd>@Model.DiaChi</dd>
+
+        <dt>Ngày vào làm</dt>
+        <dd>@(Model.NgayVaoLam?.ToString("dd/MM/yyyy"))</dd>
+
+        <dt>Chức vụ</dt>
+        <dd>@Model.Quyen</dd>
+
+        <dt>Mật khẩu</dt>
+        <dd>@Model.MatKhau</dd>
+
+    </dl>
+
+    <div class="form-actions">
+        <a href="@Url.Action("Index")" class="btn btn-back">⬅ Quay lại</a>
+    </div>
+</div>
+
+<style>
+    .page-title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .detail-box {
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 60%;
+    }
+
+    dl dt {
+        font-weight: bold;
+        width: 180px;
+        float: left;
+        clear: left;
+        color: #5A4632;
+        margin-bottom: 12px;
+    }
+
+    dl dd {
+        margin-left: 200px;
+        margin-bottom: 12px;
+    }
+
+    .btn-back {
+        background-color: #8B5E34;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.25s;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+    }
+
+        .btn-back:hover {
+            background-color: #704A29;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.35);
+        }
+</style>

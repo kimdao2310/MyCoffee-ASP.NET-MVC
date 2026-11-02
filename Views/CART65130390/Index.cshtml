@@ -1,0 +1,172 @@
+﻿@model List<QLMYCF_65130390.Models.CHI_TIET_GH>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+}
+
+<h2 class="title">🛒 Giỏ hàng của bạn</h2>
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="empty-cart">
+        <img src="~/Images/empty.png" class="empty-img" />
+        <h4>Giỏ hàng trống</h4>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-brown">Mua sắm ngay</a>
+    </div>
+}
+else
+{
+    <table class="cart-table">
+        <tr>
+            <th>Ảnh</th>
+            <th>Sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Tổng</th>
+            <th>Xóa</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/@item.SAN_PHAM.AnhSanPham" class="cart-img" />
+                </td>
+
+                <td>@item.SAN_PHAM.TenSP</td>
+
+                <td>@String.Format("{0:#,##0}₫", item.DonGia)</td>
+
+                <td>
+                    <!-- FORM CẬP NHẬT SỐ LƯỢNG -->
+                    <form action="@Url.Action("Update", "CART65130390")" method="post" class="qty-form">
+                        <input type="hidden" name="id" value="@item.MaSP" />
+                        <input type="number" name="qty" value="@item.SoLuong" min="1" class="qty-input" />
+                        <button class="btn-update">Cập nhật</button>
+                    </form>
+                </td>
+
+                <td>
+                    @String.Format("{0:#,##0}₫", item.SoLuong * item.DonGia)
+                </td>
+
+                <td>
+                    <!-- NÚT XÓA -->
+                    <a href="@Url.Action("Remove", "CART65130390", new { id = item.MaSP })"
+                       class="btn-delete">🗑</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <!-- TỔNG TIỀN + THANH TOÁN -->
+<div class="checkout-box">
+    <h4>
+        Tổng cộng:
+        <span class="total-money">
+            @String.Format("{0:#,##0}₫", Model.Sum(x => x.SoLuong * x.DonGia))
+        </span>
+    </h4>
+
+    <a href="@Url.Action("CheckoutPage", "CART65130390")" class="btn btn-buy">
+        Thanh toán
+    </a>
+
+</div>
+}
+
+
+<!-- CSS -->
+<style>
+    .title {
+        color: #8B5E34;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+        .cart-table th {
+            background: #8B5E34;
+            color: white;
+            padding: 12px;
+        }
+
+        .cart-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+    .cart-img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .qty-input {
+        width: 60px;
+        text-align: center;
+        margin-right: 5px;
+        padding: 5px;
+    }
+
+    .btn-update {
+        background: #0275d8;
+        color: white;
+        border: none;
+        padding: 5px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+        .btn-update:hover {
+            opacity: .8;
+        }
+
+    .btn-delete {
+        color: red;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+    .checkout-box {
+        text-align: right;
+        margin-top: 20px;
+    }
+
+    .total-money {
+        font-size: 22px;
+        color: #c0392b;
+        font-weight: bold;
+    }
+
+    .btn-buy {
+        background: #8B5E34;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+
+        .btn-buy:hover {
+            background: #704A29;
+        }
+
+    /* Khi giỏ hàng trống */
+    .empty-cart {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .empty-img {
+        width: 180px;
+    }
+</style>

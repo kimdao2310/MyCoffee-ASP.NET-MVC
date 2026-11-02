@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+
+<div class="login-container">
+    <div class="login-box">
+
+        <h3 class="text-center mb-4">Đăng nhập</h3>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        <form method="post">
+            <label>Email</label>
+            <input name="email" type="email" class="form-control mb-3" required />
+
+            <label>Mật khẩu</label>
+            <input name="password" type="password" class="form-control mb-3" required />
+
+            <button class="btn btn-dark w-100">Đăng nhập</button>
+
+            <p class="text-center mt-3">
+                Bạn chưa có tài khoản?
+                <a href="@Url.Action("Register", "Auth_65130390")">Đăng ký ngay</a>
+            </p>
+        </form>
+
+    </div>
+</div>
+
+<style>
+    /* NỀN TRANG ĐẸP */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        padding: 20px;
+    }
+
+    /* KHUNG ĐĂNG NHẬP */
+    .login-box {
+        width: 420px;
+        background: #ffffff;
+        padding: 30px 35px;
+        border-radius: 12px;
+        border: 1px solid #e6e0d8;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        animation: fadeIn 0.4s ease-in-out;
+    }
+
+        /* TIÊU ĐỀ */
+        .login-box h3 {
+            font-weight: 700;
+            color: #8B5E34;
+        }
+
+        /* INPUT */
+        .login-box .form-control {
+            height: 45px;
+            border-radius: 8px;
+            border: 1px solid #d4c6bc;
+        }
+
+            .login-box .form-control:focus {
+                border-color: #8B5E34;
+                box-shadow: 0 0 6px rgba(139,94,52,0.4);
+            }
+
+        /* BUTTON */
+        .login-box button {
+            background: #8B5E34 !important;
+            border: none;
+            height: 45px;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: 0.25s;
+        }
+
+            .login-box button:hover {
+                background: #704A29 !important;
+                transform: translateY(-2px);
+            }
+
+        /* LINK ĐĂNG KÝ */
+        .login-box a {
+            color: #8B5E34;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+            .login-box a:hover {
+                text-decoration: underline;
+            }
+</style>

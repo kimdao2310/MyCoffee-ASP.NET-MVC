@@ -1,0 +1,86 @@
+﻿@model QLMYCF_65130390.Models.QUANG_CAO
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">📄 CHI TIẾT QUẢNG CÁO</h3>
+
+<div class="detail-box">
+
+    <dl class="dl-horizontal">
+        <dt>Tiêu đề:</dt>
+        <dd>@Model.TieuDe</dd>
+
+        <dt>Nội dung:</dt>
+        <dd>@Model.NoiDung</dd>
+
+        <dt>Link:</dt>
+        <dd>@Model.Link</dd>
+
+        <dt>Hình ảnh:</dt>
+        <dd>
+            <img src="~/Images/@Model.HinhAnh"
+                 style="width:300px;height:160px;object-fit:cover;border-radius:8px;" />
+        </dd>
+
+        <dt>Ngày hiệu lực:</dt>
+        <dd>
+            @(Model.NgayBatDau.HasValue ? Model.NgayBatDau.Value.ToString("dd/MM/yyyy") : "Không có")
+            -
+            @(Model.NgayKetThuc.HasValue ? Model.NgayKetThuc.Value.ToString("dd/MM/yyyy") : "Không có")
+        </dd>
+
+
+        <dt>Trạng thái:</dt>
+        <dd>@(Model.TrangThai == 1 ? "Đang chạy" : "Tắt")</dd>
+    </dl>
+
+    <div class="form-actions">
+        <a href="@Url.Action("Index")" class="btn btn-back">⬅ Quay lại</a>
+    </div>
+</div>
+<style>
+    .page-title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .detail-box {
+        background: white;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 70%;
+    }
+
+    dl dt {
+        font-weight: 700;
+        width: 150px;
+        color: #5A4632;
+        float: left;
+        clear: left;
+        margin-bottom: 12px;
+    }
+
+    dl dd {
+        margin-left: 170px;
+        margin-bottom: 12px;
+    }
+
+    .btn-back {
+        background-color: #8B5E34;
+        color: white;
+        padding: 8px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: .25s;
+    }
+
+        .btn-back:hover {
+            background-color: #704A29;
+            transform: translateY(-2px);
+        }
+</style>

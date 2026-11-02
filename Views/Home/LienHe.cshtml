@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Liên hệ";
+}
+
+<div class="contact-container">
+
+    <h2 class="title">📞 Liên hệ MY COFFEE</h2>
+    <p class="subtitle">Nếu bạn có thắc mắc, hãy gửi phản hồi cho chúng tôi!</p>
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert alert-success mt-3">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="row mt-4">
+
+        <!-- FORM LIÊN HỆ -->
+        <div class="col-md-6">
+            <div class="contact-box">
+
+                <form method="post" action="@Url.Action("GuiLienHe", "Home")">
+
+                    <label>Họ tên</label>
+                    <input type="text" name="HoTen"
+                           class="form-control mb-3"
+                           placeholder="Nhập họ tên..." required />
+
+                    <label>Email</label>
+                    <input type="email" name="Email"
+                           class="form-control mb-3"
+                           placeholder="Nhập email..." required />
+
+                    <label>Nội dung</label>
+                    <textarea name="NoiDung"
+                              class="form-control mb-3"
+                              rows="5"
+                              placeholder="Nhập nội dung..." required></textarea>
+
+                    <button type="submit" class="btn btn-send">Gửi liên hệ</button>
+
+                </form>
+
+
+            </div>
+        </div>
+
+        <!-- THÔNG TIN SHOP -->
+        <div class="col-md-6">
+            <div class="info-box">
+                <h4>🏠 Địa chỉ</h4>
+                <p>123 Nguyễn Trãi, TP. Nha Trang</p>
+
+                <h4>☎ Hotline</h4>
+                <p>0909 123 456</p>
+
+                <h4>📧 Email</h4>
+                <p>mycoffee@gmail.com</p>
+
+                <h4>⏰ Giờ làm việc</h4>
+                <p>Thứ 2 – Chủ nhật: 7:00 - 22:30</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: #6d4c41;
+    }
+
+    .contact-container {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .contact-box, .info-box {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #e6e0d8;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+        .contact-box label {
+            font-weight: 600;
+            color: #8B5E34;
+        }
+
+    .btn-send {
+        width: 100%;
+        background: #8B5E34;
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        font-size: 18px;
+        transition: 0.25s;
+    }
+
+        .btn-send:hover {
+            background: #704A29;
+            transform: translateY(-2px);
+        }
+</style>

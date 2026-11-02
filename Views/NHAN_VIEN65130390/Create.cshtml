@@ -1,0 +1,39 @@
+﻿@model QLMYCF_65130390.Models.NHAN_VIEN
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">➕ THÊM NHÂN VIÊN</h3>
+
+<div class="form-box">
+    @using (Html.BeginForm())
+    {
+        <label>Họ tên nhân viên</label>
+        @Html.TextBoxFor(m => m.HoTenNV, new { @class = "form-control input-brown" })
+
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-brown" })
+
+        <label>Mật khẩu</label>
+        @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control input-brown" })
+
+        <label>Số điện thoại</label>
+        @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control input-brown" })
+
+        <label>Địa chỉ</label>
+        @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control input-brown" })
+
+        <label>Ngày vào làm</label>
+        @Html.TextBoxFor(m => m.NgayVaoLam, new { @class = "form-control input-brown", type = "date" })
+
+        <label>Chức vụ</label>
+        @Html.DropDownListFor(m => m.Quyen,
+            new SelectList(new[] { "Admin", "Quản lý", "Nhân viên" }),
+            "Chọn quyền",
+            new { @class = "form-control input-brown" })
+
+        <button class="btn btn-add mt-3">Thêm</button>
+    }
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back mt-3">⬅ Quay lại</a>

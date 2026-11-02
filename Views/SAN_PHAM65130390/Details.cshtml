@@ -1,0 +1,112 @@
+﻿@model QLMYCF_65130390.Models.SAN_PHAM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>CHI TIẾT SẢN PHẨM</h3>
+
+<div class="form-horizontal">
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>Mã sản phẩm</dt>
+        <dd>@Model.MaSP</dd>
+
+        <dt>Tên sản phẩm</dt>
+        <dd>@Model.TenSP</dd>
+
+        <dt>Mô tả</dt>
+        <dd>@Model.MoTaSP</dd>
+
+        <dt>Giá bán</dt>
+        <dd>@String.Format("{0:#,##0} đ", Model.DonGia)</dd>
+
+        <dt>Đơn vị tính</dt>
+        <dd>@Model.DonViTinh</dd>
+
+        <dt>Ảnh sản phẩm</dt>
+        <dd>
+            @if (!string.IsNullOrEmpty(Model.AnhSanPham))
+            {
+                <img src="~/Images/@Model.AnhSanPham" class="product-image" />
+            }
+            else
+            {
+                <span>Không có ảnh</span>
+            }
+        </dd>
+        <dt>Tên loại sản phẩm</dt>
+        
+        <dd>@Html.DisplayFor(model => model.LOAI_SAN_PHAM.TenLSP)</dd>
+
+    </dl>
+
+    <div class="form-actions">
+        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-back" })
+        &nbsp;
+        @Html.ActionLink("Sửa", "Edit", new { id = Model.MaSP }, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+<style>
+    .form-horizontal {
+        background-color: #fff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    dl.dl-horizontal dt {
+        font-weight: 600;
+        color: #5A4632;
+        width: 180px;
+        float: left;
+        clear: left;
+        margin-right: 10px;
+    }
+
+    dl.dl-horizontal dd {
+        margin-left: 200px;
+        margin-bottom: 10px;
+    }
+
+    .product-image {
+        width: 180px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .form-actions {
+        margin-top: 20px;
+    }
+
+    .btn-back {
+        background-color: #8B5E34;
+        color: white;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+        transition: all 0.25s ease;
+    }
+
+    .btn-back:hover {
+        background-color: #704A29;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.35);
+        transform: translateY(-2px);
+    }
+</style>

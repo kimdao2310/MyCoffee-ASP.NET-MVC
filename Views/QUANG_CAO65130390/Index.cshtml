@@ -1,0 +1,132 @@
+﻿@model IEnumerable<QLMYCF_65130390.Models.QUANG_CAO>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Quảng cáo";
+    int i = 0;
+}
+
+<h2 class="mb-3">📢 DANH SÁCH QUẢNG CÁO</h2>
+
+<p>
+    @Html.ActionLink("➕ Thêm quảng cáo", "Create", null, new { @class = "btn-add-brown" })
+</p>
+
+<table class="table-custom">
+    <tr>
+        <th>STT</th>
+        <th>Ảnh</th>
+        <th>Tiêu đề</th>
+        <th>Ngày hiệu lực</th>
+        <th>Trạng thái</th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var qc in Model)
+    {
+        string status = qc.TrangThai == 1 ? "Đang chạy" : "Tắt";
+        string color = qc.TrangThai == 1 ? "#5cb85c" : "#d9534f";
+
+        <tr>
+            <td>@(++i)</td>
+            <td>
+                @if (qc.HinhAnh != null)
+                {
+                    <img src="~/Images/@qc.HinhAnh" style="width:90px;height:55px;object-fit:cover;border-radius:6px;" />
+                }
+            </td>
+            <td>@qc.TieuDe</td>
+            <td>
+                @(qc.NgayBatDau?.ToString("dd/MM/yyyy"))
+                -
+                @(qc.NgayKetThuc?.ToString("dd/MM/yyyy"))
+            </td>
+
+            <td>
+                <span class="badge-status" style="background:@color">@status</span>
+            </td>
+
+            <td>
+                <a href="@Url.Action("Edit", new { id = qc.MaQC })" class="btn-action btn-edit">
+                    <img src="~/Images/edit.jpg" class="icon-btn" />
+                </a>
+
+                <a href="@Url.Action("Details", new { id = qc.MaQC })" class="btn-action btn-info2">
+                    <img src="~/Images/details.jpg" class="icon-btn" />
+                </a>
+
+                <a href="@Url.Action("Delete", new { id = qc.MaQC })"
+                   onclick="return confirm('Bạn có chắc muốn xóa quảng cáo này?');"
+                   class="btn-action btn-delete">
+                    <img src="~/Images/delete.jpg" class="icon-btn" />
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+<style>
+    .table-custom {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 6px;
+        font-family: Arial, sans-serif;
+    }
+
+        .table-custom th {
+            background: #8B5E34;
+            color: white;
+            padding: 12px;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .table-custom td {
+            background: white;
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .table-custom tr:hover td {
+            background-color: #f5f2ef;
+            transform: translateY(-2px);
+            transition: 0.2s;
+        }
+
+    .icon-btn {
+        width: 22px;
+        height: 22px;
+        transition: .2s;
+    }
+
+        .icon-btn:hover {
+            transform: scale(1.2);
+        }
+
+    .badge-status {
+        padding: 6px 12px;
+        border-radius: 6px;
+        color: white;
+        font-weight: 600;
+    }
+
+    .btn-add-brown {
+        background: linear-gradient(135deg, #8B5E34, #A67645);
+        color: white !important;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+        transition: .25s;
+    }
+
+        .btn-add-brown:hover {
+            background: #704A29;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+</style>

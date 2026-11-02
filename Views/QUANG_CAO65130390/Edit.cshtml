@@ -1,0 +1,83 @@
+﻿@model QLMYCF_65130390.Models.QUANG_CAO
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">✏️ SỬA QUẢNG CÁO</h3>
+
+<div class="form-box">
+    @using (Html.BeginForm("Edit", "QUANG_CAO65130390", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.MaQC)
+
+        <label>Tiêu đề</label>
+        @Html.TextBoxFor(m => m.TieuDe, new { @class = "form-control input-brown" })
+
+        <label>Nội dung</label>
+        @Html.TextAreaFor(m => m.NoiDung, new { @class = "form-control input-brown", rows = 3 })
+
+        <label>Link chuyển hướng</label>
+        @Html.TextBoxFor(m => m.Link, new { @class = "form-control input-brown" })
+
+        <label>Hình ảnh hiện tại</label><br />
+        <img src="~/Images/@Model.HinhAnh" style="width:150px;height:80px;border-radius:8px;object-fit:cover;" />
+        <br /><br />
+        <input type="file" name="HinhAnh" class="form-control input-brown" />
+
+        <label>Ngày bắt đầu</label>
+        @Html.TextBoxFor(m => m.NgayBatDau, new { type = "date", @class = "form-control input-brown" })
+
+        <label>Ngày kết thúc</label>
+        @Html.TextBoxFor(m => m.NgayKetThuc, new { type = "date", @class = "form-control input-brown" })
+
+        <label>Trạng thái</label>
+        @Html.DropDownListFor(m => m.TrangThai,
+            new SelectList(new[] {
+                new { ID = 1, Name = "Đang chạy" },
+                new { ID = 0, Name = "Tắt" }
+            }, "ID", "Name", Model.TrangThai),
+            new { @class = "form-control input-brown" })
+
+        <button class="btn btn-update mt-3">Lưu thay đổi</button>
+    }
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back">⬅ Quay lại</a>
+<style>
+    .page-title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .form-box {
+        background: #fff;
+        padding: 25px 35px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        width: 70%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .input-brown {
+        margin-bottom: 12px;
+        border-radius: 6px;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-update {
+        background-color: #0275d8;
+        color: white;
+        padding: 10px 22px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        transition: .25s;
+    }
+
+        .btn-update:hover {
+            background-color: #025aa5;
+            transform: translateY(-2px);
+        }
+</style>

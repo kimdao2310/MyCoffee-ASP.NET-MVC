@@ -1,0 +1,70 @@
+﻿
+@model List<QLMYCF_65130390.Models.GIO_HANG>
+@{
+    ViewBag.Title = "Lịch sử đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="title">📦 Lịch sử đơn hàng</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center mt-4">
+        Bạn chưa có đơn hàng nào.
+    </div>
+}
+else
+{
+    <table class="table table-bordered shadow-sm mt-3">
+        <tr style="background:#8B5E34; color:white;">
+            <th>Mã đơn</th>
+            <th>Ngày đặt</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+            <th>Xem</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            string status = "";
+            string color = "";
+
+            switch (item.TrangThai)
+            {
+                case 1: status = "Chờ duyệt"; color = "orange"; break;
+                case 2: status = "Đang giao"; color = "#0275d8"; break;
+                case 3: status = "Hoàn tất"; color = "green"; break;
+            }
+
+            <tr>
+                <td>@item.MaHD</td>
+                <td>@item.NgayDatHang.ToString("dd/MM/yyyy")</td>
+                <td>@String.Format("{0:N0} đ", item.TongTien)</td>
+                <td><span style="color:@color; font-weight:bold">@status</span></td>
+
+                <td>
+                    <a href="@Url.Action("ChiTietDonHang","Home", new { id = item.MaHD })"
+                       class="btn btn-sm btn-brown">Xem</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<style>
+    .title {
+        color: #8B5E34;
+        font-weight: bold;
+    }
+
+    .btn-brown {
+        background: #8B5E34;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 6px;
+    }
+
+        .btn-brown:hover {
+            background: #704A29;
+        }
+</style>

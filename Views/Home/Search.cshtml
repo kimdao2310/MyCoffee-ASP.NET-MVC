@@ -1,0 +1,88 @@
+﻿@model List<QLMYCF_65130390.Models.SAN_PHAM>
+
+@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">🔍 Kết quả tìm kiếm cho: <b>@ViewBag.Keyword</b></h2>
+
+@if (!Model.Any())
+{
+    <p>Không tìm thấy sản phẩm nào.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var sp in Model)
+        {
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card product-item shadow-sm">
+
+                    <img src="~/Images/@sp.AnhSanPham" class="card-img-top"
+                         style="height:220px; object-fit:cover;" />
+
+                    <div class="card-body text-center">
+                        <h5>@sp.TenSP</h5>
+
+                        <p class="price text-danger fw-bold">
+                            @String.Format("{0:N0} đ", sp.DonGia)
+                        </p>
+
+                        <!-- Xem chi tiết -->
+                        <a href="@Url.Action("ChiTietSanPham", "Home", new { id = sp.MaSP })"
+                           class="btn btn-detail w-100 mb-2">
+                            Xem chi tiết
+                        </a>
+
+                        <!-- Thêm vào giỏ -->
+                        <a href="@Url.Action("AddToCart", "CART65130390", new { id = sp.MaSP })"
+                           class="btn btn-addcart w-100">
+                            Thêm vào giỏ
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+}
+<style>
+    .btn-detail {
+        background: #8B5E34;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: 0.25s;
+        display: block;
+        text-align: center;
+    }
+
+        .btn-detail:hover {
+            background: #704A29;
+            transform: translateY(-2px);
+        }
+
+    .btn-addcart {
+        background: #c0392b; /* đỏ đậm giống trang chính */
+        color: white;
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: 0.25s;
+        display: block;
+        text-align: center;
+    }
+
+        .btn-addcart:hover {
+            background: #992d22;
+            transform: translateY(-2px);
+        }
+
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+</style>

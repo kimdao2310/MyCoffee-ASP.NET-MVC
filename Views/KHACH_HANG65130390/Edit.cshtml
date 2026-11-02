@@ -1,0 +1,29 @@
+﻿@model QLMYCF_65130390.Models.KHACH_HANG
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">✏️ SỬA THÔNG TIN KHÁCH HÀNG</h3>
+
+<div class="form-box">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.MaKH)
+
+        <label>Họ tên</label>
+        @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control input-brown" })
+
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-brown" })
+
+        <label>Số điện thoại</label>
+        @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control input-brown" })
+
+        <label>Địa chỉ</label>
+        @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control input-brown" })
+
+        <button class="btn btn-update mt-3">Lưu</button>
+    }
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back mt-3">⬅ Quay lại</a>

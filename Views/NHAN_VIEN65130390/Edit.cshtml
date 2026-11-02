@@ -1,0 +1,111 @@
+﻿@model QLMYCF_65130390.Models.NHAN_VIEN
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">✏️ SỬA THÔNG TIN NHÂN VIÊN</h3>
+
+<div class="form-box">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.MaNV)
+
+        <label>Họ tên nhân viên</label>
+        @Html.TextBoxFor(m => m.HoTenNV, new { @class = "form-control input-brown" })
+
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-brown" })
+
+        <label>Mật khẩu</label>
+        @Html.PasswordFor(m => m.MatKhau, new { @class = "form-control input-brown" })
+
+        <label>Số điện thoại</label>
+        @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control input-brown" })
+
+        <label>Địa chỉ</label>
+        @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control input-brown" })
+
+        <label>Ngày vào làm</label>
+        @Html.TextBoxFor(m => m.NgayVaoLam, new { @class = "form-control input-brown", type = "date" })
+
+        <label>Chức vụ</label>
+        @Html.DropDownListFor(
+            m => m.Quyen,
+            new SelectList(new[] { "Admin", "Quản lý", "Nhân viên" }, Model.Quyen),
+            new { @class = "form-control input-brown" }
+        )
+
+        <button class="btn btn-update mt-3">Lưu thay đổi</button>
+    }
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back mt-3">⬅ Quay lại</a>
+
+<style>
+    /* ====== PAGE TITLE ====== */
+    .page-title {
+        color: #8B5E34;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    /* ====== FORM BOX ====== */
+    .form-box {
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 60%;
+    }
+
+    /* ====== INPUT ====== */
+    .input-brown {
+        border: 1px solid #A67850;
+        padding: 8px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        transition: 0.25s;
+    }
+
+        .input-brown:focus {
+            border-color: #8B5E34;
+            box-shadow: 0 0 6px rgba(139, 94, 52, 0.4);
+        }
+
+    /* ====== BUTTON UPDATE ====== */
+    .btn-update {
+        background: #8B5E34;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+        transition: 0.25s;
+    }
+
+        .btn-update:hover {
+            background: #704A29;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.35);
+        }
+
+    /* ====== BACK BUTTON ====== */
+    .btn-back {
+        background-color: #8B5E34;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.25s;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+    }
+
+        .btn-back:hover {
+            background-color: #704A29;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.35);
+        }
+</style>

@@ -1,0 +1,135 @@
+﻿@model List<QLMYCF_65130390.Models.SAN_PHAM>
+
+@{
+    ViewBag.Title = "Giới thiệu MY Coffee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="title">  DANH SÁCH SẢN PHẨM </h2>
+<!-- BỘ LỌC SẢN PHẨM -->
+<div class="filter-box">
+
+    <form method="get" class="filter-form">
+
+        <!-- Tìm kiếm -->
+        <input type="text" name="search" placeholder="Tìm sản phẩm..."
+               value="@Request["search"]" class="filter-input" />
+
+        <!-- Loại sản phẩm -->
+        <select name="loai" class="filter-select">
+            <option value="">-- Loại sản phẩm --</option>
+
+            @foreach (var item in ViewBag.LoaiSP)
+            {
+                <option value="@item.MaLSP" @(Request["loai"] == item.MaLSP ? "selected" : "")>
+                    @item.TenLSP
+                </option>
+            }
+        </select>
+
+        <!-- Sắp xếp -->
+        <select name="sort" class="filter-select">
+            <option value="">Sắp xếp</option>
+            <option value="price_asc" @(Request["sort"] == "price_asc" ? "selected" : "")>Giá thấp → cao</option>
+            <option value="price_desc" @(Request["sort"] == "price_desc" ? "selected" : "")>Giá cao → thấp</option>
+        </select>
+
+        <!-- Nút lọc -->
+        <button class="filter-btn">Lọc</button>
+
+    </form>
+</div>
+
+<div class="row">
+    @foreach (var sp in Model)
+    {
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card product-item shadow-sm">
+
+                <!-- Hình ảnh -->
+                <img src="~/Images/@sp.AnhSanPham" class="card-img-top"
+                     style="height:220px; object-fit:cover;" />
+
+                <div class="card-body text-center">
+
+                    <!-- Tên sản phẩm -->
+                    <h5>@sp.TenSP</h5>
+
+                    <!-- Giá -->
+                    <p class="price text-danger fw-bold">
+                        @String.Format("{0:N0} đ", sp.DonGia)
+                    </p>
+
+                    <!-- ⭐ THÊM VÀO GIỎ HÀNG -->
+                    <a href="@Url.Action("AddToCart", "CART65130390", new { id = sp.MaSP })"
+                       class="btn btn-success btn-sm w-100 mb-2">
+                        🛒 Thêm vào giỏ hàng
+                    </a>
+
+                    <!-- ⭐ MUA NGAY -->
+                    <a href="@Url.Action("BuyNow", "CART65130390", new { id = sp.MaSP })"
+                       class="btn btn-danger btn-sm w-100">
+                        ⚡ Mua ngay
+                    </a>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+<style>
+    /* ================= FILTER BOX ================= */
+    .filter-box {
+        margin-bottom: 25px;
+        background: #ffffff; /* nền trắng */
+        padding: 18px;
+        border-radius: 10px;
+        border: 1px solid #e5e5e5; /* viền xám nhẹ */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* bóng nhẹ */
+    }
+
+    /* Hàng chứa input/select */
+    .filter-form {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    /* INPUT – SELECT */
+    .filter-input,
+    .filter-select {
+        padding: 10px 14px;
+        border: 1px solid #d6d6d6; /* viền xám nhạt */
+        border-radius: 8px;
+        background: #fff;
+        font-size: 15px;
+        min-width: 180px;
+        transition: 0.25s;
+    }
+
+        .filter-input:focus,
+        .filter-select:focus {
+            border-color: #8B5E34; /* nâu highlight khi focus */
+            box-shadow: 0 0 5px rgba(139,94,52,0.35);
+        }
+
+    /* BUTTON LỌC */
+    .filter-btn {
+        background: #8B5E34; /* nâu chủ đạo */
+        color: white;
+        padding: 10px 25px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        transition: 0.25s;
+    }
+
+        .filter-btn:hover {
+            background: #704A29; /* hover đậm */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+        }
+</style>

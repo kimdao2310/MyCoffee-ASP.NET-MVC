@@ -1,0 +1,27 @@
+﻿@model QLMYCF_65130390.Models.KHACH_HANG
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3 class="page-title">📄 CHI TIẾT KHÁCH HÀNG</h3>
+
+<div class="detail-box">
+    <p><strong>Họ tên:</strong> @Model.HoTen</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Số điện thoại:</strong> @Model.SoDienThoai</p>
+    <p><strong>Địa chỉ:</strong> @Model.DiaChi</p>
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-back mt-3">⬅ Quay lại</a>
+
+<style>
+    .detail-box {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 6px solid #8B5E34;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 450px;
+    }
+</style>
