@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="336935ab2ef347d789c1a5793a61f7d7" Name="Diagram1" ZoomLevel="66">
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.BAN" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.CHI_TIET_GH" Width="1.5" PointX="8.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.GIO_HANG" Width="1.5" PointX="4.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.KHACH_HANG" Width="1.5" PointX="6.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.LOAI_SAN_PHAM" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.NHAN_VIEN" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.QUANG_CAO" Width="1.5" PointX="11.875" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.SAN_PHAM" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.sysdiagram" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.THANH_TOAN" Width="1.5" PointX="7.625" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.TIN_TUC" Width="1.5" PointX="9.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMYCF_65130390Model.TRANG_THAI_DON" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__GIO_HANG__MaBan__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__CHI_TIET_G__MaHD__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__CHI_TIET_G__MaSP__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__GIO_HANG__MaKH__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__GIO_HANG__MaNV_D__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__GIO_HANG__MaNV_D__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__GIO_HANG__MaNV_G__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__GIO_HANG__TrangT__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__THANH_TOAN__MaHD__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__SAN_PHAM__MaLSP__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__QUANG_CAO__MaNV__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="QLMYCF_65130390Model.FK__TIN_TUC__MaNV__6FE99F9F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
