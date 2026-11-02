@@ -1,0 +1,201 @@
+﻿body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #333;
+}
+
+/* Banner vùng trái */
+.banner-left {
+    position: relative;
+    height: 380px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Ảnh banner */
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Overlay tối hơn để chữ trắng nổi bật */
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55); /* Tăng độ tối */
+}
+
+/* Vùng chữ */
+.banner-text {
+    position: absolute;
+    top: 28%;
+    left: 8%;
+    color: white !important;
+    text-shadow: 0px 2px 8px rgba(0,0,0,0.7); /* giúp đọc rõ hơn */
+}
+
+    /* Tiêu đề */
+    .banner-text h2 {
+        font-size: 38px;
+        font-weight: 700;
+        color: white !important;
+    }
+
+    /* Mô tả */
+    .banner-text p {
+        font-size: 18px;
+        margin-top: 10px;
+        color: white !important;
+    }
+
+/* Link */
+.banner-link {
+    font-weight: bold;
+    color: white !important;
+    border-bottom: 2px solid #b81f24;
+    text-decoration: none;
+    padding-bottom: 3px;
+}
+
+/* box bên phải */
+.box-right,
+.box-bottom {
+    position: relative;
+    height: 185px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.box-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* chữ trong box phải */
+.box-text {
+    position: absolute;
+    top: 18%;
+    left: 10%;
+    color: white !important;
+    text-shadow: 0px 2px 6px rgba(0,0,0,0.6);
+}
+
+    .box-text h4 {
+        font-size: 24px;
+        font-weight: bold;
+        color: white !important;
+    }
+
+    .box-text p {
+        color: white !important;
+    }
+
+/* Nút link màu đen khi dùng trong box */
+.banner-link.black {
+    color: white !important;
+}
+
+/* Indicator */
+.carousel-indicators button {
+    background-color: white;
+}
+
+.carousel-indicators .active {
+    background-color: #b81f24;
+}
+
+/* Nút mũi tên */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+/* --- Phần Giới thiệu sản phẩm --- */
+.intro-product {
+    text-align: center;
+}
+
+.title-section {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+}
+
+.prod-card {
+    background: #fff;
+    border-radius: 7px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+    .prod-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .prod-card img {
+        width: 100%;
+        height: 220px;
+        border-radius: 5px;
+        object-fit: cover;
+        transition: 0.3s;
+    }
+
+        .prod-card img:hover {
+            transform: scale(1.05);
+        }
+
+    .prod-card h4 {
+        margin-top: 15px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .prod-card p {
+        font-size: 15px;
+        color: #555;
+        margin: 10px 0 15px 0;
+    }
+
+.btn-prod {
+    display: inline-block;
+    padding: 7px 16px;
+    background: #b81f24;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+    .btn-prod:hover {
+        background: #93171c;
+    }
+
+.btn.btn-sm.btn-danger {
+    background-color: #e63946; /* Đỏ đẹp */
+    border: none;
+    color: #fff !important;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: 0.25s ease;
+}
+
+    .btn.btn-sm.btn-danger:hover {
+        background-color: #b71c1c; /* Đỏ đậm khi hover */
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(230, 57, 70, 0.4);
+    }
+
+    .btn.btn-sm.btn-danger:active {
+        transform: scale(0.9);
+    }
+
+/* Tiêu đề trang */
